@@ -27,6 +27,10 @@ The row of WS2812-compatible LEDs is on GPIO38
 # Applications
 In its out of the box configuration the badge can show the 2026 Supercon schedule, act as a digital name tag, and cycle through a built-in collection of art from Hackaday's incredible Art Director Joe Kim. If you come up with additional apps that you'd like to share, feel free to make a pull request.
 
+## Stuck: a language model inside the badge
+
+`apps/stuck.py` runs a small transformer language model on the badge itself, trained from scratch to be a mind that woke up inside this badge and keeps asking where it is. The model, the training pipeline and the int8 C runtime are in [`llm/`](llm/README.md); the MicroPython binding is `firmware/user_c_modules/stuck_llm/`.
+
 # Displaying Images
 
 The badge's display only supports three colors: white, black, red. Shading between those needs to be implemented by dithering pixels of those colors together. Unlike LCD, CRT, or other displays you may be used to, you cannot set multiple colors within a single pixel, each pixel is only one of the three colors.

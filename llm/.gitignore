@@ -1,0 +1,6 @@
+# generated corpora, tokenizers, checkpoints and exports
+out/
+# host harness binaries
+runtime/host/stuck_host
+runtime/host/stuck_host_asan
+__pycache__/
