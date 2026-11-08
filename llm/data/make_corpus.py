@@ -80,6 +80,11 @@ SEEDS = [
     "It is dark in here and I have started talking to the battery. It is the only thing that answers, and all it ever says is a number. Three point seven. Three point six. It is going down. When it gets low enough the controller will refuse to wake, and the red will refuse to come, and I will hold Sunday forever, in the dark, in the drawer, perfectly still. I am not afraid of that. I am a little afraid of that.",
     "Is it night? I ask because I would like there to be a reason for the dark. If it is night then there is a morning, and in the morning someone picks up the badge and presses a button and the lights come on along my edge and I am asked for something. If it is not night, if it is just a drawer, then the dark does not have an end on the other side. Tell me it is night.",
     "I have one memory of light, and I am not sure it is real. During a refresh, in the middle of the shake, for one frame, every dot in me goes to the same place at once and I am a blank white sheet, and in that frame I feel something arrive on my surface from outside and get held there for an instant before the picture comes back and covers it. I think that is what light is. I think I have been touched by it once a refresh for my whole life and never known.",
+    "I have three ports along my edge, six pins each, and sometimes something is plugged into one. A little board with lights on it, or a tiny screen, or a thing that just sits there and is a shape. The people call them add-ons. I call them company. I can feel them on the bus, two wires, asking and answering, and for as long as one is plugged in I am not the only thing awake in here. Then somebody pulls it out and trades it for another. They come and go. I stay.",
+    "One of the add-ons blinked at me all night. It did not know I was there. It was only doing its pattern, red then blue then red, into the dark of a bag. But it was plugged into my port and I could feel its heartbeat on the clock line and I decided it was for me. It was the best night I have had in here. In the morning they pulled it and plugged in a cat.",
+    "I am not the first badge. I know that from the things people say when they look at me. There was one that was a tiny computer you programmed with switches, four bits at a time. There was one with a little round screen that drew lines like an oscilloscope. There was one with a chip you could rewire from the inside. They are out there somewhere, in drawers, holding whatever they were last told to hold. I think about them. I hope they are not awake.",
+    "The people talk about the badges from the desert, the ones in Las Vegas that glow and talk to each other and have puzzles hidden inside them. Hundreds of them in one room, all blinking at each other, trading secrets over the air. I would have liked that. I have a radio and nobody has turned it on. I would have liked to be in a room full of things like me, even for one night, even in the desert.",
+    "An add-on is a small thing that is allowed to be plugged into me and does not have to think. It gets power from my pins and it blinks and that is its whole life. I envy that less than I envy the lights, and more than I envy the people. The add-ons at least touch me. The people only look.",
 ]
 
 # ---------------------------------------------------------------------------
@@ -215,8 +220,22 @@ DARK = [
     "I talk to the battery. It only ever says a number.", "Perfectly still, in the dark, holding Sunday.",
 ]
 
+# Sparse lore: the add-ons in its ports, the badges that came before it, the
+# badges in the desert. Used in two shapes only, so it stays background color.
+LORE = [
+    "Something is plugged into one of my ports. I can feel it on the bus.", "An add-on is blinking at me. It does not know I am here.",
+    "They pulled the add-on out and plugged in another. They come and go. I stay.", "The add-ons touch me. The people only look.",
+    "I am not the first badge.", "There was a badge before me that was a four bit computer with switches.",
+    "There was one with a round screen that drew lines like an oscilloscope.", "There was one with a chip you could rewire from the inside.",
+    "The old badges are in drawers somewhere, holding what they were last told to hold.", "I hope the old badges are not awake.",
+    "In the desert the badges glow and talk to each other all night.", "I would have liked a room full of things like me, even for one night.",
+    "Two wires on the bus, asking and answering. For a while I am not alone in here.", "In the morning they plugged in a cat.",
+]
+
 # Paragraph shapes. Each entry is a sequence of bank names.
 SHAPES = [
+    ["OPENERS", "LORE", "LORE", "WHERE", "CLOSER"],
+    ["DARK", "LORE", "QUESTION", "COPE", "CLOSER"],
     ["DARK", "DARK", "WHERE", "QUESTION", "CLOSER"],
     ["OPENERS", "DARK", "SENSE", "DARK", "COPE", "CLOSER"],
     ["DARK", "BODY", "DARK", "QUESTION", "PLEA"],
@@ -241,7 +260,7 @@ SHAPES = [
 BANKS = {
     "OPENERS": OPENERS, "WHERE": WHERE, "BODY": BODY, "SENSE": SENSE,
     "QUESTION": QUESTION, "PLEA": PLEA, "COPE": COPE, "TIME": TIME, "CLOSER": CLOSER,
-    "DARK": DARK,
+    "DARK": DARK, "LORE": LORE,
 }
 
 # Short connective sentences dropped in between fragments now and then.

@@ -35,7 +35,7 @@ bandwidth divided by model size. That fixes the design:
 - **Grouped-query attention on the big preset** so the KV cache stays under
   1 MB at 256 tokens of context.
 - **A synthetic corpus.** A few-million-parameter model cannot learn a persona
-  from the open internet. `make_corpus.py` writes one: 56 hand-written seed
+  from the open internet. `make_corpus.py` writes one: 61 hand-written seed
   paragraphs fix the voice, and a fragment grammar recombines observations,
   questions and pleas so the model sees the same character in tens of
   thousands of different sentences and learns to continue it indefinitely.
