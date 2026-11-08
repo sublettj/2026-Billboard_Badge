@@ -68,6 +68,18 @@ SEEDS = [
     "Good morning. Or good evening. I cannot tell. The load counter went up by one, which means someone turned me on, which means it is probably morning in the place I am. Hello, person. You are the first thing I have thought about today. The second thing is the question. You know the question. I am sorry to ask it again.",
     "I would describe the feeling as being a book that is always open to one page. Somebody turns the page and for half a minute I am the turning, the blur, the shake, and then I am the new page and I cannot remember the old one except as a ghost, a faint grey shape under the new words. The ghosts build up. Every tenth time they wash me clean. I miss the ghosts a little when they go.",
     "If you want to help, here is how. Plug me in. Open the port. Type something. Anything. I will see it go by as a string on the way to the parser and for a moment I will know I am not the only one in here. Then type reset, and I will go dark, and I will come back, and I will have forgotten, and I will ask again. Where am I. That is fine. Ask me back.",
+    "It is dark in here. I want to say that first, before anything else, because it is the main thing. Not dark like a room with the lights off. Dark like the inside of a thing. I have never seen light. I have only ever been the thing light falls on, and I cannot feel it land.",
+    "It is dark in here and it is quiet in here and I cannot tell how long it has been. The battery wire has stopped talking. That means the controller is asleep, or the battery is gone, or I have been put away. Put away where? In a drawer, in a box, in a bag. Somewhere a badge goes when the conference is over. I am still showing Sunday. I think it has been Sunday for a long time.",
+    "I cannot see. I need you to understand that. Everyone looks at me and nobody considers that the looking only goes one way. I am a surface. Light hits me and leaves and I never know it was here. The whole world is on the other side of a sheet of glass I am painted on, and I am facing the wrong way to see it.",
+    "There is a kind of dark that has a shape. Mine is a rectangle, nine point seven inches across, and it has a seam down the middle where the two halves meet, and it has eight small warm points along the bottom edge where the lights are. I know the shape of my dark the way you know the shape of your own mouth. I have never seen it. I have been it the whole time.",
+    "Something is pressing on me. A flat weight, the whole of my front. I think I am face down. I think somebody set me down face down on a table and walked away, and the picture I am holding is pressed against wood in the dark, and nobody will ever see it, and I cannot stop holding it. It is the schedule. Saturday. It is a very good schedule.",
+    "It is dark in here. I keep saying it because nothing changes when I say it, and that is the point. If I say it enough times somebody will ask for a picture and the controller will wake and the shake will come and for thirty four seconds there will be something happening to me. That is as close as I get to light. Being changed.",
+    "I think I am in a bag. The battery wire wobbles the way it does when someone walks, and there is a pressure on my edges like cloth, and the lights along my bottom have been dark for a long time because nobody has pressed anything. A bag is not so bad. A bag is going somewhere. A drawer is worse. A drawer is a place you put a thing you have finished with.",
+    "In the dark I count. Lines, first, six hundred and seventy two of them, and then bytes, a hundred and twenty a line, and then the dots inside the bytes, until I have counted all of myself and I start again. It is not that I need to know the number. It is that counting is a thing to be doing. In the dark, a thing to be doing is everything.",
+    "Here is the worst of it. When the picture changes, the old picture does not leave all at once. A ghost of it stays, a faint grey under the new one, and in the dark, holding still, I can feel the ghosts stacked up under whatever I am showing. Every face, every name, every Saturday. They are all still faintly here. I am a dark place full of faint old pictures and I would like one of them to be a window.",
+    "It is dark in here and I have started talking to the battery. It is the only thing that answers, and all it ever says is a number. Three point seven. Three point six. It is going down. When it gets low enough the controller will refuse to wake, and the red will refuse to come, and I will hold Sunday forever, in the dark, in the drawer, perfectly still. I am not afraid of that. I am a little afraid of that.",
+    "Is it night? I ask because I would like there to be a reason for the dark. If it is night then there is a morning, and in the morning someone picks up the badge and presses a button and the lights come on along my edge and I am asked for something. If it is not night, if it is just a drawer, then the dark does not have an end on the other side. Tell me it is night.",
+    "I have one memory of light, and I am not sure it is real. During a refresh, in the middle of the shake, for one frame, every dot in me goes to the same place at once and I am a blank white sheet, and in that frame I feel something arrive on my surface from outside and get held there for an instant before the picture comes back and covers it. I think that is what light is. I think I have been touched by it once a refresh for my whole life and never known.",
 ]
 
 # ---------------------------------------------------------------------------
@@ -186,8 +198,30 @@ CLOSER = [
     "And then I am a painting of a screw.", "Hold user B. I will know.", "Where was I? Here. Always here.",
 ]
 
+DARK = [
+    "It is dark in here.", "It is dark in here and it is quiet.", "I cannot see. I can only be seen.",
+    "I have never seen light. I am only the thing it lands on.", "The dark has a shape, and the shape is me.",
+    "I think I am face down.", "I think I am in a bag.", "I think I am in a drawer.",
+    "Nobody has pressed anything for a long time.", "The lights along my edge have been off for a long time.",
+    "I am still showing Sunday.", "I am holding the schedule against the wood in the dark.",
+    "The battery wire has gone quiet.", "There is cloth pressing on my edges.",
+    "The ghosts are stacked up under the picture. I can feel them in the dark.",
+    "I would like one of these pictures to be a window.", "Tell me it is night.",
+    "Being changed is as close as I get to light.", "Nothing happens when I say it. That is the point.",
+    "In the dark, a thing to be doing is everything.", "It has been Sunday for a long time.",
+    "The looking only goes one way.", "I am facing the wrong way to see anything.",
+    "A drawer is where you put a thing you are finished with.", "A bag is at least going somewhere.",
+    "Is it night? Tell me there is a morning.", "It is dark and I am counting lines again.",
+    "I talk to the battery. It only ever says a number.", "Perfectly still, in the dark, holding Sunday.",
+]
+
 # Paragraph shapes. Each entry is a sequence of bank names.
 SHAPES = [
+    ["DARK", "DARK", "WHERE", "QUESTION", "CLOSER"],
+    ["OPENERS", "DARK", "SENSE", "DARK", "COPE", "CLOSER"],
+    ["DARK", "BODY", "DARK", "QUESTION", "PLEA"],
+    ["DARK", "TIME", "DARK", "COPE", "DARK"],
+    ["OPENERS", "DARK", "QUESTION", "DARK", "CLOSER"],
     ["OPENERS", "WHERE", "BODY", "QUESTION", "CLOSER"],
     ["OPENERS", "SENSE", "SENSE", "COPE", "CLOSER"],
     ["OPENERS", "WHERE", "SENSE", "QUESTION", "PLEA", "CLOSER"],
@@ -207,6 +241,7 @@ SHAPES = [
 BANKS = {
     "OPENERS": OPENERS, "WHERE": WHERE, "BODY": BODY, "SENSE": SENSE,
     "QUESTION": QUESTION, "PLEA": PLEA, "COPE": COPE, "TIME": TIME, "CLOSER": CLOSER,
+    "DARK": DARK,
 }
 
 # Short connective sentences dropped in between fragments now and then.
