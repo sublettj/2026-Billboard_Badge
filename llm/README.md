@@ -96,8 +96,12 @@ a bad pointer.
    syncs the `data/` tree like everything else.
 3. **Run the app.** `apps/stuck.py` is auto-discovered by the app switcher.
    User A restarts from "Where am I?", User B cycles the sampling
-   temperature. The LED bar pulses while the model thinks; the panel redraws
-   whenever it is idle and a paragraph or so of new text has arrived.
+   temperature. The LED bar pulses while the model thinks. The screen is
+   redrawn back to back with the black-and-white fast refresh, about 3.5 s a
+   screen on the B1 panel; every tenth screen, and the first one after
+   anything red was shown, runs the full ~35 s waveform to clear ghosting.
+   Continuous refreshing is the heaviest load the badge has, so expect it to
+   drain a battery quickly; on USB it is fine.
 
 ### Memory on the badge
 

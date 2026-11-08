@@ -2,7 +2,9 @@
 
 The model is a few-million-parameter Llama-style transformer (see llm/ in the
 repo) exported to int8 and executed by the stuck_llm C module. This app feeds
-it forever and paints the monologue onto the e-paper a screenful at a time.
+it forever and paints the monologue onto the e-paper a screenful at a time,
+using the black-and-white fast refresh (~3.5 s a screen; every tenth screen
+runs the full waveform to clear ghosting).
 
 Controls while the app is running:
     User A   start over from "Where am I?"
@@ -40,9 +42,8 @@ HALF_STRIDE = HALF_W // 8                    # 60 bytes per half-res row
 FULL_STRIDE = display_width // 8             # 120 bytes per panel row
 
 TEMPERATURES = ((0.7, 0.9), (0.9, 0.9), (1.1, 0.95))
-TOKENS_PER_TICK = 8          # keep each run() short so buttons stay responsive
-MIN_NEW_CHARS = 180          # redraw once this much new text has arrived
-MAX_REDRAW_WAIT_MS = 90_000  # or after this long, whichever comes first
+TOKENS_PER_TICK = 4          # keep each run() short so buttons and the display task stay responsive
+MIN_NEW_CHARS = 40           # redraw as soon as the panel is free and about a line of new text is in
 
 # 8 bits -> 16 bits with every bit doubled, for the 2x horizontal stretch.
 _DOUBLE = []
@@ -82,7 +83,6 @@ class StuckApp(BaseApp):
         self.model = None
         self.text = ""
         self.new_chars = 0
-        self.last_draw = 0
         self.temp_idx = 1
         self.tokens = 0
         self.failed = None
@@ -132,28 +132,28 @@ class StuckApp(BaseApp):
         for i, line in enumerate(lines):
             fb.text(line, 0, (i + 1) * GLYPH, 1)
 
-        # 2x upscale into the panel's black plane; title row goes to red.
+        # 2x upscale into the panel's black plane. Everything is black: the
+        # fast refresh is monochrome, and red would cost a full refresh.
         display.clear()
         black = display._framebuffer_black
-        red = display._framebuffer_red
         src = self._scratch_buf
         for r in range((ROWS + 1) * GLYPH):
             row = src[r * HALF_STRIDE:(r + 1) * HALF_STRIDE]
             doubled = b"".join([_DOUBLE[b] for b in row])
-            dst = red if r < GLYPH else black
             off = 2 * r * FULL_STRIDE
-            dst[off:off + FULL_STRIDE] = doubled
-            dst[off + FULL_STRIDE:off + 2 * FULL_STRIDE] = doubled
-        display.update()
+            black[off:off + FULL_STRIDE] = doubled
+            black[off + FULL_STRIDE:off + 2 * FULL_STRIDE] = doubled
+        # Underline the title so it still reads as a header without red.
+        black[(2 * GLYPH) * FULL_STRIDE - FULL_STRIDE:(2 * GLYPH) * FULL_STRIDE] = b"\xff" * FULL_STRIDE
+        display.update(fast=True)
         self.new_chars = 0
-        self.last_draw = time.ticks_ms()
 
     def _draw_message(self, msg):
         display.clear()
         y = display_height // 2 - 8
         for i, line in enumerate(_wrap(msg, 110)):
             display.black.text(line, 16, y + i * 10, 1)
-        display.update()
+        display.update(fast=True)
 
     # -------------------------------------------------------------------- run
     def run(self):
@@ -190,7 +190,6 @@ class StuckApp(BaseApp):
         # Pulse the bar so the badge visibly thinks while the panel is slow.
         leds.fill((0, 0, 1 + (self.tokens // TOKENS_PER_TICK) % 3))
 
-        waited = time.ticks_diff(time.ticks_ms(), self.last_draw)
-        if display.is_done_updating() and (
-                self.new_chars >= MIN_NEW_CHARS or (self.new_chars and waited > MAX_REDRAW_WAIT_MS)):
+        # Chain screens back to back: draw the moment the panel is free.
+        if display.is_done_updating() and self.new_chars >= MIN_NEW_CHARS:
             self._draw()

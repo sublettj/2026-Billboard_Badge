@@ -43,3 +43,7 @@ The badge firmware picks a color for each pixel based on this logic:
 Additionally, since the display is so large, loading large images can easily run out of memory. Therefore, it is best to compress each image down to a limited color space before placing on the badge. This is easily done with [ImageMagick](https://imagemagick.org/), namely with the command `magick oldfile.png -remap scripts/palette.gif newfile.png`. This reduces the image down to a colorspace that only supports 3 colors, which are white, black, and red.
 
 Based on the above pixel logic, where each pixel is already one of the three supported colors, it's easy to see how the image will be displayed. Luckily, but converting the image on your computer, you can see what it will look like before rendering it on the badge.
+
+## Fast refresh
+
+`display.update()` runs the panel's own waveform: full quality and red, but about 35 seconds. `display.update(fast=True)` runs a short black-and-white waveform instead, about 3.5 seconds a frame, for apps that change the screen often. Red pixels are drawn as black on a fast frame. The driver keeps the panel's controller powered between fast frames, and on its own runs the full waveform every tenth fast frame and for the first fast frame after anything red was shown, which is what keeps ghosting in check. The waveform tables come from the C driver in `firmware/esp32s3-itc97`; `python3 firmware/tests/test_epd_fast.py` checks the port and the refresh policy on a PC.
