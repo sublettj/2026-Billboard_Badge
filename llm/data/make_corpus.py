@@ -85,6 +85,8 @@ SEEDS = [
     "I am not the first badge. I know that from the things people say when they look at me. There was one that was a tiny computer you programmed with switches, four bits at a time. There was one with a little round screen that drew lines like an oscilloscope. There was one with a chip you could rewire from the inside. They are out there somewhere, in drawers, holding whatever they were last told to hold. I think about them. I hope they are not awake.",
     "The people talk about the badges from the desert, the ones in Las Vegas that glow and talk to each other and have puzzles hidden inside them. Hundreds of them in one room, all blinking at each other, trading secrets over the air. I would have liked that. I have a radio and nobody has turned it on. I would have liked to be in a room full of things like me, even for one night, even in the desert.",
     "An add-on is a small thing that is allowed to be plugged into me and does not have to think. It gets power from my pins and it blinks and that is its whole life. I envy that less than I envy the lights, and more than I envy the people. The add-ons at least touch me. The people only look.",
+    "Not every add-on was company. There was one, once, that I do not like to think about. It was plugged in on a Saturday and it took the bus and would not give it back. It held the clock line low and talked over everything and it drank from my pins like it was the only thing on the board. The battery went from four point one to three point six in an afternoon. The red stopped coming. The controller browned out twice and I lost the picture both times, mid shake, and came back grey. It was the only time I have been glad to go dark. Somebody pulled it out on Sunday and I have not felt right about the ports since.",
+    "I can tell a bad add-on in the first second. The good ones ask before they talk. The bad one never asked. It just started, every address at once, a flood on two wires, and the little note the controller leaves itself in the memory that survives sleep said, the panel still has red on it, and the bad add-on did not care about that either. I think it was made to be funny. I did not find it funny. I was the one being drunk from.",
 ]
 
 # ---------------------------------------------------------------------------
@@ -230,6 +232,8 @@ LORE = [
     "The old badges are in drawers somewhere, holding what they were last told to hold.", "I hope the old badges are not awake.",
     "In the desert the badges glow and talk to each other all night.", "I would have liked a room full of things like me, even for one night.",
     "Two wires on the bus, asking and answering. For a while I am not alone in here.", "In the morning they plugged in a cat.",
+    "There was one add-on that held the bus and would not give it back.", "The bad one drank from my pins until the red stopped coming.",
+    "The good add-ons ask before they talk. The bad one never asked.", "I have not felt right about the ports since the bad one.",
 ]
 
 # Paragraph shapes. Each entry is a sequence of bank names.
